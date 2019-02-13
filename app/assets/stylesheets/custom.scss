@@ -125,6 +125,18 @@ input {
   margin-left: 0;
 }
 
+/* users index */
+
+.users {
+  list-style-type: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}
+
 /* sidebar */
 
 aside {
@@ -158,9 +170,9 @@ aside {
   margin-right: 10px;
 }
 
-// .gravatar_edit {
-//   margin-top: 15px;
-// }
+.gravatar_edit {
+  margin-top: 15px;
+}
 
 /* footer */
 
