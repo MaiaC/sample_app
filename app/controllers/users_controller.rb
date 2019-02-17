@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts.paginate(page: params[:page])
     redirect_to root_url and return unless @user.activated == true
   end
 
@@ -57,14 +58,6 @@ class UsersController < ApplicationController
       if logged_in?
         flash[:danger] = "You must be logged out to create new user."
         redirect_to current_user
-      end
-    end
-
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "You must be logged in to access this page."
-        redirect_to login_path
       end
     end
 

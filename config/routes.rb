@@ -14,9 +14,12 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+
+  post '/', to: 'posts#create'
   
   #resources
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets, except: [:index, :show, :destroy]
+  resources :posts, only: [:create, :destroy]
 end
