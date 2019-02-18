@@ -29,3 +29,10 @@ users = User.order(:created_at).take(6)
 50.times do |n|
   users.each { |user| user.posts.create!(content: Faker::GreekPhilosophers.quote, created_at: n.days.ago) }
 end
+
+us = User.all
+u  = us.first
+following = us[2..50]
+followers = us[3..40]
+following.each { |followed| u.follow(followed) }
+followers.each { |follower| follower.follow(u) }

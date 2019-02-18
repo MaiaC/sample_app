@@ -61,7 +61,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                               email: "abcdefghijkl@mnopqrstuv.wxyz",
                               password: "password",
                               password_confirmation: "password" } }
-    assert_equal(nil, User.find_by(email: "abcdefghijkl@mnopqrstuv.wxyz"))
+    assert_nil(User.find_by(email: "abcdefghijkl@mnopqrstuv.wxyz"))
     assert_not(flash.empty?)
     assert_redirected_to(@user)
     get root_path
@@ -90,5 +90,15 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       delete user_path(@user)
     end
     assert_redirected_to(root_path)
+  end
+
+  test "should redirect following when not logged in" do
+    get following_user_path(@user)
+    assert_redirected_to login_path
+  end
+
+  test "should redirect followers when not logged in" do
+    get followers_user_path(@user)
+    assert_redirected_to login_path
   end
 end
